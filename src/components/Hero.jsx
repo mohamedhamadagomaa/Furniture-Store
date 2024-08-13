@@ -19,8 +19,8 @@ const Hero = () => {
           quod.
         </p>
         <div className="mt-10">
-          <Link className="btn btn-primary" to={"products"}>
-            Our Products
+          <Link className="btn btn-primary uppercase" to={"products"}>
+            our products
           </Link>
         </div>
       </div>
