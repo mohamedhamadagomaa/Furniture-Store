@@ -6,7 +6,7 @@ const SubmitBtn = ({ text }) => {
   const isSubmitting = navigation.state === "submitting";
   return (
     <button
-      className="btn btn-primary capitalize btn-block"
+      className="btn btn-primary  btn-block uppercase"
       disabled={isSubmitting}
     >
       {isSubmitting ? (
@@ -15,7 +15,7 @@ const SubmitBtn = ({ text }) => {
           sending
         </>
       ) : (
-      text || 'submit'
+        text || "submit"
       )}
     </button>
   );

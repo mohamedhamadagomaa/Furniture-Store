@@ -24,14 +24,11 @@ const Login = () => {
         <div className="mt-4">
           <SubmitBtn text={"login"} />
         </div>
-        <button
-          className="btn btn-secondary btn-block capitalize"
-          type="button"
-        >
+        <button className="btn btn-secondary btn-block uppercase" type="button">
           guest user
         </button>
         <p className="text-center">
-          not a member yet? {' '}
+          not a member yet?{" "}
           <Link
             to={"/register"}
             className="capitalize ml-2 link link-hover link-primary"
