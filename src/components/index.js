@@ -12,3 +12,4 @@ export { default as PaginationContainer } from "./PaginationContainer.jsx";
 export { default as FormSelect } from "./FormSelect.jsx";
 export { default as FormRange } from "./FormRange.jsx";
 export { default as FormCheckbox } from "./FormCheckbox.jsx";
+export { default as Loading } from "./Loading.jsx";

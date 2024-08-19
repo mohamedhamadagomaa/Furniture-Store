@@ -41,7 +41,8 @@ const Filters = () => {
       <FormCheckbox
         label={"free shipping"}
         name={"shipping"}
-        size={"checkbox-sm"}
+        size={"checkbox-xs"}
+       
       />
 
       {/* BUTTONS */}
