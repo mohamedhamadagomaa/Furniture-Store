@@ -3,7 +3,8 @@ import { Form, useLoaderData, Link } from "react-router-dom";
 import { FormInput, FormSelect, FormRange, FormCheckbox } from "../components";
 
 const Filters = () => {
-  const { meta } = useLoaderData();
+  const { meta, params } = useLoaderData();
+  const { search, company, category, shipping, order, price } = params;
   return (
     <Form className="bg-base-200 rounded-md px-8 py-4 grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center">
       {/* SEARCH */}
@@ -12,6 +13,7 @@ const Filters = () => {
         label="search product"
         name="search"
         size="input-sm"
+        defaultValue={search}
       />
       {/* Selects */}
       {/* category */}
@@ -20,6 +22,7 @@ const Filters = () => {
         name="category"
         list={meta.categories}
         size="select-sm"
+        defaultValue={category}
       />
       {/* Company */}
       <FormSelect
@@ -27,6 +30,7 @@ const Filters = () => {
         name="compony"
         list={meta.companies}
         size="select-sm"
+        defaultValue={company}
       />
       {/* Order */}
       <FormSelect
@@ -34,15 +38,16 @@ const Filters = () => {
         name="order"
         list={["a-z", "z-a", "high", "low"]}
         size="select-sm"
+        defaultValue={order}
       />
       {/* Price */}
-      <FormRange label={"select range"} size={"range-sm"} name={"price"} />
+      <FormRange label={"select range"} size={"range-sm"} name={"price"} defaultValue={price} />
       {/* checkbox */}
       <FormCheckbox
         label={"free shipping"}
         name={"shipping"}
         size={"checkbox-xs"}
-       
+        defaultValue={shipping}
       />
 
       {/* BUTTONS */}
