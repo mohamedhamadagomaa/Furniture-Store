@@ -3,8 +3,10 @@ import { Form, useLoaderData, Link } from "react-router-dom";
 import { FormInput, FormSelect, FormRange, FormCheckbox } from "../components";
 
 const Filters = () => {
-  const { meta, params } = useLoaderData();
-  const { search, company, category, shipping, order, price } = params;
+  const { meta} = useLoaderData();
+  // console.log(meta);
+//   const { search, company, category, shipping, order, price } = params;
+//  console.log(shipping);
   return (
     <Form className="bg-base-200 rounded-md px-8 py-4 grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center">
       {/* SEARCH */}
@@ -13,7 +15,7 @@ const Filters = () => {
         label="search product"
         name="search"
         size="input-sm"
-        defaultValue={search}
+        // defaultValue={search}
       />
       {/* Selects */}
       {/* category */}
@@ -22,7 +24,7 @@ const Filters = () => {
         name="category"
         list={meta.categories}
         size="select-sm"
-        defaultValue={category}
+        // defaultValue={category}
       />
       {/* Company */}
       <FormSelect
@@ -30,7 +32,7 @@ const Filters = () => {
         name="compony"
         list={meta.companies}
         size="select-sm"
-        defaultValue={company}
+        // defaultValue={company}
       />
       {/* Order */}
       <FormSelect
@@ -38,16 +40,21 @@ const Filters = () => {
         name="order"
         list={["a-z", "z-a", "high", "low"]}
         size="select-sm"
-        defaultValue={order}
+        // defaultValue={order}
       />
       {/* Price */}
-      <FormRange label={"select range"} size={"range-sm"} name={"price"} defaultValue={price} />
+      <FormRange
+        label={"select range"}
+        size={"range-sm"}
+        name={"price"}
+        // defaultValue={price}
+      />
       {/* checkbox */}
       <FormCheckbox
         label={"free shipping"}
         name={"shipping"}
-        size={"checkbox-xs"}
-        defaultValue={shipping}
+        size={"checkbox-sm"}
+        // defaultValue={shipping}
       />
 
       {/* BUTTONS */}

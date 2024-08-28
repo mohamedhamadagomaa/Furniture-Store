@@ -9,7 +9,6 @@ const FormCheckbox = ({ label, name, defaultValue, size }) => {
       <input
         type="checkbox"
         name={name}
-        id={name}
         defaultValue={defaultValue}
         className={`checkbox checkbox-primary  ${size}`}
       />
