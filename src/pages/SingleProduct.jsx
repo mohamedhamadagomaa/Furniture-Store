@@ -2,12 +2,14 @@ import React from "react";
 import { useLoaderData, Link } from "react-router-dom";
 import { useState } from "react";
 import { customFetch, formatPrice, generateAmountOption } from "../utils";
-
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/cart/cartSlice";
 export const loader = async ({ params }) => {
   const response = await customFetch(`/products/${params.id}`);
   return { product: response.data.data };
 };
 const SingleProduct = () => {
+  const dispatch = useDispatch();
   const { product } = useLoaderData();
   const { image, title, price, description, colors, company } =
     product.attributes;
@@ -17,6 +19,11 @@ const SingleProduct = () => {
   const handleAmount = (e) => {
     setAmount(parseInt(e.target.value));
   };
+  
+  const addToCart = () =>{
+
+  } 
+
   return (
     <section>
       <div className="text-md breadcrumbs">
