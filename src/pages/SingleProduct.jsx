@@ -9,7 +9,6 @@ export const loader = async ({ params }) => {
   return { product: response.data.data };
 };
 const SingleProduct = () => {
-  const dispatch = useDispatch();
   const { product } = useLoaderData();
   const { image, title, price, description, colors, company } =
     product.attributes;
@@ -19,10 +18,20 @@ const SingleProduct = () => {
   const handleAmount = (e) => {
     setAmount(parseInt(e.target.value));
   };
-  
-  const addToCart = () =>{
-
-  } 
+  const cartProduct = {
+    cartId: product.id + productColor,
+    productId: product.id,
+    image,
+    title,
+    price,
+    company,
+    productColor,
+    amount,
+  };
+  const dispatch = useDispatch();
+  const addToCart = () => {
+    dispatch(addItem({ product: cartProduct }));
+  };
 
   return (
     <section>
@@ -90,7 +99,7 @@ const SingleProduct = () => {
           {/* cart btn */}
           <div className="mt-10">
             <button
-              onClick={() => console.log("added to bag")}
+              onClick={() => addToCart()}
               className="btn btn-secondary btn-md uppercase"
             >
               Add to bag
