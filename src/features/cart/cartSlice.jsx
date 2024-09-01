@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { json } from "react-router-dom";
+// import { json } from "react-router-dom";
 
 import { toast } from "react-toastify";
 const initialState = {
@@ -19,7 +19,7 @@ const cartSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const { product } = action.payload;
-      // console.log(product);
+      console.log(product);
       const item = state.cartItems.find((i) => i.cartId === product.cartId);
       if (item) {
         item.amount += product.amount;
@@ -28,16 +28,36 @@ const cartSlice = createSlice({
       }
       state.numItemsInCart += product.amount;
       state.cartTotal += product.price * product.amount;
-      state.tax = 0.1 * state.cartTotal;
-      state.orderTotal = state.cartTotal + state.shipping + state.tax;
-      localStorage.setItem("cart", JSON.stringify(state));
+      cartSlice.caseReducers.calculateTotals(state);
       toast.success("Item added");
     },
     clearItems: (state) => {
-      state.cartItems = [];
+      localStorage.setItem("cart", JSON.stringify(initialState));
+      return initialState;
     },
-    removeItem: (state, action) => {},
-    editItem: (state, action) => {},
+    removeItem: (state, action) => {
+      const { cartId } = action.payload;
+      const product = state.cartItems.find((i) => i.cartId === cartId);
+      state.cartItems = state.cartItems.filter((i) => i.cartId !== cartId);
+      state.numItemsInCart -= product.amount;
+      state.cartTotal -= product.price * product.amount;
+      cartSlice.caseReducers.calculateTotals(state);
+      toast.error("Item removed from cart");
+    },
+    editItem: (state, action) => {
+      const { cartId, amount } = action.payload;
+      const item = state.cartItems.find((i) => i.id === cartId);
+      state.numItemsInCart += amount - item.amount;
+      state.cartTotal += item.price * (amount - item.amount);
+      item.amount = amount;
+      cartSlice.caseReducers.calculateTotals(state);
+      toast.success("cart updated");
+    },
+    calculateTotals: (state) => {
+      state.tax = 0.1 * state.cartTotal;
+      state.orderTotal = state.cartTotal + state.shipping + state.tax;
+      localStorage.setItem("cart", JSON.stringify(state));
+    },
   },
 });
 export const { addItem, clearItems, removeItem, editItem } = cartSlice.actions;
