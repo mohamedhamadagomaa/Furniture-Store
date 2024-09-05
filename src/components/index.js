@@ -13,5 +13,5 @@ export { default as FormSelect } from "./FormSelect.jsx";
 export { default as FormRange } from "./FormRange.jsx";
 export { default as FormCheckbox } from "./FormCheckbox.jsx";
 export { default as Loading } from "./Loading.jsx";
-export { default as CartItem } from "./CartItem.jsx";
+export { default as CartTotals } from "./CartTotals.jsx";
 export { default as CartItemsList } from "./CartItemsList.jsx";

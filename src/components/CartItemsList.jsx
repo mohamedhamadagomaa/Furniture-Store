@@ -1,7 +1,8 @@
 import React from "react";
+import { useLoaderData } from "react-router-dom";
 
 const CartItemsList = () => {
-  return <h1 className="text-3xl">cart Items List</h1>;
+  return <>cartItems</>;
 };
 
 export default CartItemsList;
