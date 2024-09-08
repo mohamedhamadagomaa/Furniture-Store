@@ -9,6 +9,7 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userState.user);
+  // console.log(user);
   const handleLogout = () => {
     navigate("/");
     dispatch(logoutUser());

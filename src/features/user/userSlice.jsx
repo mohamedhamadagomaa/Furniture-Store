@@ -23,7 +23,7 @@ const userSlice = createSlice({
     logoutUser: (state) => {
       state.user = null;
       localStorage.removeItem("user");
-      toast.success("Logged out successfully");
+      toast.success("Logged out successfully and the cart cleared");
     },
     toggleTheme: (state) => {
       const { winter, dracula } = themes;
