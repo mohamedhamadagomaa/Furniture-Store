@@ -12,8 +12,8 @@ const Header = () => {
   // console.log(user);
   const handleLogout = () => {
     navigate("/");
-    dispatch(logoutUser());
     dispatch(clearItems());
+    dispatch(logoutUser());
   };
   return (
     <header className="bg-neutral py-2 text-neutral-content">
@@ -22,7 +22,12 @@ const Header = () => {
         {user ? (
           <div className="flex gap-x-2 sm:gap-x-8 items-center">
             <p className="text-xs sm:text-sm">Hello , {user.username}</p>
-            <button className="uppercase btn btn-outline btn-primary btn-xs" onClick={handleLogout}>logout</button>
+            <button
+              className="uppercase btn btn-outline btn-primary btn-xs"
+              onClick={handleLogout}
+            >
+              logout
+            </button>
           </div>
         ) : (
           <div className="flex gap-x-6 justify-center items-center">
@@ -37,7 +42,6 @@ const Header = () => {
             </Link>
           </div>
         )}
-        {/* Links*/}
       </div>
     </header>
   );
