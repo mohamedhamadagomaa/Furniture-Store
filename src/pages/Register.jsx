@@ -31,19 +31,19 @@ const Register = () => {
           type={"text"}
           label={"username"}
           name={"username"}
-          defaultValue={"james2 smith"}
+          // defaultValue={"james2 smith"}
         />
         <FormInput
           type={"email"}
           label={"email"}
           name={"email"}
-          defaultValue={"james2@gmail.com"}
+          // defaultValue={"james2@gmail.com"}
         />
         <FormInput
           type={"password"}
           label={"password"}
           name={"password"}
-          defaultValue={"secret"}
+          // defaultValue={"secret"}
         />
         <div className="mt-4">
           <SubmitBtn text={"register"} />
