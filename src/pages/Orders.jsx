@@ -22,22 +22,23 @@ export const loader =
           Authorization: `Bearer ${user.token}`,
         },
       });
-      // console.log(user);
-      return { Orders: response.data.data, meta: response.data.meta };
+      console.log(response);
+      return { orders: response.data.data, meta: response.data.meta };
     } catch (error) {
       const errorMessage =
         error?.response?.data?.error?.message ||
         "there was an error accessing your orders";
+      toast.error(errorMessage);
       if (error.response.status === 401 || 403) return redirect("/login");
       return null;
     }
   };
 const Orders = () => {
   const { meta } = useLoaderData();
-  // console.log(meta);
-  // if (meta.pagination.total < 1) {
-  //   return <SectionTitle text={"place your orders"} />;
-  // }
+  console.log(meta);
+  if (meta.pagination.total < 1) {
+    return <SectionTitle text={"place your orders"} />;
+  }
   return (
     <>
       <SectionTitle text={"your orders"} />

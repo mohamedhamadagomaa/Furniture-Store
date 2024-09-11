@@ -10,8 +10,13 @@ const OrdersList = () => {
   return (
     <div className="mt-8">
       <h4 className="mb-4 capitalize">
-        total orders : {meta.pagination.totals}
+        total orders : {meta.pagination.total}
       </h4>
+      <div className="overflow-x-auto">
+        <table className="table table-zebra">
+          {/* header */}
+        </table>
+      </div>
     </div>
   );
 };
