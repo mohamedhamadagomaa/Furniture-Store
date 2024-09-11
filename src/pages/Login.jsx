@@ -17,6 +17,7 @@ export const action =
       const response = await customFetch.post("/auth/local", data);
       store.dispatch(loginUser(response.data));
       toast.success("login successfully");
+      console.log(response);
       return redirect("/");
     } catch (error) {
       error?.response?.data?.message || "please double check your credentials";
