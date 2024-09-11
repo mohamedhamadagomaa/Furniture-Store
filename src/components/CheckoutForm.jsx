@@ -11,7 +11,7 @@ export const action =
   async ({ request }) => {
     const formData = await request.formData();
     const { name, address } = Object.fromEntries(formData);
-    const user = store.getState().UserState.user;
+    const user = store.getState().userState.user;
     const { cartItems, orderTotal, numItemsInCart } =
       store.getState().cartState;
     const info = {
@@ -26,14 +26,10 @@ export const action =
       const response = await customFetch.post(
         "/orders",
         { data: info },
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
+        { headers: { Authorization: `Bearer ${user.token}` } }
       );
       store.dispatch(clearItems());
-      toast.success("order placed successfully");
+      toast.success("order place successfully");
       return redirect("/orders");
     } catch (error) {
       console.log(error);
@@ -41,9 +37,11 @@ export const action =
         error?.response?.data?.error?.message ||
         "there was an error placing your order";
       toast.error(errorMessage);
-      if (error?.response?.status === 401 || 403) return redirect("/login");
+      if(error.response.status === 401) return redirect('/login')
       return null;
     }
+
+    return null;
   };
 const CheckoutForm = () => {
   return (
