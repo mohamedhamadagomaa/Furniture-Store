@@ -29,6 +29,7 @@ const PaginationContainer = () => {
           Prev
         </button>
         {pages.map((pageNumber) => {
+
           return (
             <button
               key={pageNumber}

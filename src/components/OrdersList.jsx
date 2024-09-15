@@ -14,7 +14,33 @@ const OrdersList = () => {
       </h4>
       <div className="overflow-x-auto">
         <table className="table table-zebra">
-          {/* header */}
+          {/* head */}
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Products</th>
+              <th>Cost</th>
+              <th className="hidden sm:block">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((order) => {
+              const id = order.id;
+              const { address, name, createdAt, orderTotals, numItemsInCart } =
+                order.attributes;
+                const date = day(createdAt).format("hh:mm a - MMM Do, YYYY ");
+              return (
+                <tr key={id}>
+                  <td>{name}</td>
+                  <td>{address}</td>
+                  <td>{numItemsInCart}</td>
+                  <td>{orderTotals}</td>
+                  <td>{date}</td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </div>
