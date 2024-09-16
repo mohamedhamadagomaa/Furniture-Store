@@ -7,7 +7,7 @@ import { addItem } from "../features/cart/cartSlice";
 const singleProductQuery = (id) => {
   return {
     queryKey: ["singleProduct", id],
-    queryFn: () => customFetch.get(`/products/${id}`),
+    queryFn: () => customFetch(`/products/${id}`),
   };
 };
 

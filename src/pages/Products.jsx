@@ -31,7 +31,7 @@ export const loader =
     );
     const products = response.data.data;
     const meta = response.data.meta;
-    // console.log(products);
+   
 
     return { products, meta, params };
   };

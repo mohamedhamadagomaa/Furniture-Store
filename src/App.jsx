@@ -68,12 +68,12 @@ const router = createBrowserRouter([
         path: "checkout",
         element: <Checkout />,
         loader: checkoutLoader(store),
-        action: checkoutAction(store,queryClient),
+        action: checkoutAction(store, queryClient),
       },
       {
         path: "orders",
         element: <Orders />,
-        loader: ordersLoader(store,queryClient),
+        loader: ordersLoader(store, queryClient),
       },
     ],
   },
@@ -95,7 +95,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };
