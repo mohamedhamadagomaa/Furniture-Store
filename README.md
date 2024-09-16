@@ -4865,9 +4865,8 @@ export const loader =
   (store, queryClient) =>
   async ({ request }) => {
     const user = store.getState().userState.user;
-
     if (!user) {
-      toast.warn("You must be logged in to view orders");
+      toast.warn("you must logged in to view the orders");
       return redirect("/login");
     }
     const params = Object.fromEntries([
@@ -4883,13 +4882,11 @@ export const loader =
         meta: response.data.meta,
       };
     } catch (error) {
-      console.log(error);
       const errorMessage =
         error?.response?.data?.error?.message ||
         "there was an error accessing your orders";
-
       toast.error(errorMessage);
-      if (error?.response?.status === 401 || 403) return redirect("/login");
+      if (error.response.status === 401 || 403) return redirect("/login");
       return null;
     }
   };

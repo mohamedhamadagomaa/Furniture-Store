@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { useQueryClient } from "@tanstack/react-query";
 import { logoutUser } from "../features/user/userSlice";
 import { clearItems } from "../features/cart/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,10 +10,12 @@ const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userState.user);
   // console.log(user);
+  const queryClient = useQueryClient();
   const handleLogout = () => {
     navigate("/");
-    dispatch(clearItems());
     dispatch(logoutUser());
+    dispatch(clearItems());
+    queryClient.removeQueries();
   };
   return (
     <header className="bg-neutral py-2 text-neutral-content">

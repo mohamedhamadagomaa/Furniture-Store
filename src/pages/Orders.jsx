@@ -2,9 +2,29 @@ import React from "react";
 import { redirect, useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 import { customFetch } from "../utils";
-import { OrdersList, PaginationContainer, SectionTitle } from "../components";
+import {
+  ComplexPaginationContainer,
+  OrdersList,
+  SectionTitle,
+} from "../components";
+export const ordersQuery = (params, user) => {
+  return {
+    queryKey: [
+      "orders",
+      user.username,
+      params.page ? parseInt(params.page) : 1,
+    ],
+    queryFn: () =>
+      customFetch.get("/orders", {
+        params,
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }),
+  };
+};
 export const loader =
-  (store) =>
+  (store, queryClient) =>
   async ({ request }) => {
     const user = store.getState().userState.user;
     if (!user) {
@@ -14,17 +34,17 @@ export const loader =
     const params = Object.fromEntries([
       ...new URL(request.url).searchParams.entries(),
     ]);
-    console.log(params);
     try {
-      const response = await customFetch.get("/orders", {
-        params,
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
-      console.log(response);
-      return { orders: response.data.data, meta: response.data.meta };
+      const response = await queryClient.ensureQueryData(
+        ordersQuery(params, user)
+      );
+
+      return {
+        orders: response.data.data,
+        meta: response.data.meta,
+      };
     } catch (error) {
+    console.log(error);
       const errorMessage =
         error?.response?.data?.error?.message ||
         "there was an error accessing your orders";
@@ -43,7 +63,7 @@ const Orders = () => {
     <>
       <SectionTitle text={"your orders"} />
       <OrdersList />
-      <PaginationContainer />
+      <ComplexPaginationContainer />
     </>
   );
 };

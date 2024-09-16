@@ -27,16 +27,16 @@ const OrdersList = () => {
           <tbody>
             {orders.map((order) => {
               const id = order.id;
-              const { address, name, createdAt, orderTotals, numItemsInCart } =
+              const { address, name, createdAt, orderTotal, numItemsInCart } =
                 order.attributes;
-                const date = day(createdAt).format("hh:mm a - MMM Do, YYYY ");
+              const date = day(createdAt).format("hh:mm a - MMM Do, YYYY ");
               return (
                 <tr key={id}>
                   <td>{name}</td>
                   <td>{address}</td>
                   <td>{numItemsInCart}</td>
-                  <td>{orderTotals}</td>
-                  <td>{date}</td>
+                  <td>{orderTotal}</td>
+                  <td className="hidden sm:block">{date}</td>
                 </tr>
               );
             })}
